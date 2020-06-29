@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+    
+    <form action="/search", method="POST">
+        <input name="movieName" autofocus autocomplete="off" class="form-control" type="text" placeholder="Search movie">
+        <button class="btn btn-primary" style="background-color: lightseagreen; border-color: lightseagreen;" type="submit">Search</button>
+    </form>
+    <hr>
+
+    <div style="color: Crimson;">{{message}}</div>
+
+    {% for row in data %}
+
+    <img src="{{row['Poster']}}" alt="product"> 
+    <form action="/search" method="POST">
+       <button type="submit" name="movie_id" value="{{row['imdbID']}}">Comment</button>
+    </form>
+    <br> 
+    {{row["Title"]}}  <br>
+    IMDB ID: {{row["imdbID"]}} <br>
+    Year: {{row["Year"]}} <br>
+    Type: {{row["Type"]}} <br>  
+        
+    <hr>
+    <br>
+
+    {% endfor %}
+{% endblock %}

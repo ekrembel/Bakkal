@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Comment
+{% endblock %}
+
+{% block main %}
+    <form action="/comment" method="POST">
+        <!-- <div>
+            <input name="movie_id" type="text" placeholder="IMDB ID Here">
+        </div> <br> -->
+        <div>
+            <input name="comment" type="textarea" placeholder="Comment here..."> 
+        </div> <br>  
+        <button name="movie_id" type="submit" value="{{movie_id}}" >Submit</button>
+    </form> <br>
+
+    {{movie_id}}
+    
+
+
+
+{% endblock %}

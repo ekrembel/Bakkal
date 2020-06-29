@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <div>
+        <button class="btn btn-primary" style="color: lightseagreen; background-color: white; border-radius: 50px ; border-color: lightseagreen; font-size: 70px; width: 80px; font-family: Georgia, 'Times New Roman', Times, serif;" type="reset">B</button>
+    </div> <br>
+    <div>Please register here</div> <br>
+    <form action="/register" method="POST">
+        <div class="form-group">
+            <input id="firstname" class="form-control" autocomplete="off" name="firstname" type="text" placeholder="first name">
+        </div>
+        <div class="form-group">
+            <input id="lastname" class="form-control" autocomplete="off" name="lastname" type="text" placeholder="last name">
+        </div>
+        <div class="form-group">
+            <input id="email" class="form-control" autocomplete="off" name="email" type="text" placeholder="email address">
+        </div>
+        <div class="form-group">
+            <input id="password" class="form-control" autocomplete="off" name="password" type="text" placeholder="password">
+        </div>
+        <div class="form-group">
+            <input onkeyup="matchingError()" id="confirmPassword" class="form-control" autocomplete="off" name="confirmPassword" type="text" placeholder="confirm password">
+        </div>
+        <button onclick="alertError() "class="btn btn-primary" style="background-color: lightseagreen; border-color: lightseagreen;" type="submit">Submit</button>
+    </form>
+
+    <script>
+        function matchingError() {
+            password = document.getElementById("password").value;
+            confirm_password = document.getElementById("confirmPassword").value;
+            if (password !== confirm_password) {
+                document.querySelector("#password").style.color = "Crimson";
+                document.querySelector("#confirmPassword").style.color = "Crimson";
+                document.getElementById("password").style.borderColor = "Crimson";
+                document.getElementById("confirmPassword").style.borderColor = "Crimson";                
+            }
+            else {
+                document.querySelector("#password").style.color = "DarkCyan";
+                document.querySelector("#confirmPassword").style.color = "DarkCyan";
+                document.getElementById("password").style.borderColor = "#ced4da";
+                document.getElementById("confirmPassword").style.borderColor = "#ced4da";
+            }
+        }
+        function alertError() {
+            firstname = document.getElementById("firstname").value;
+            lastname = document.getElementById("lastname").value;
+            email = document.getElementById("email").value;
+            password = document.getElementById("password").value;
+            confirm_password = document.getElementById("confirmPassword").value; 
+            if ((firstname === "") || (lastname === "") || (email === "") || (password === "") || (confirm_password === "")) {
+                alert("All fields are required!");
+                event.preventDefault();
+            }
+            else if (password !== confirm_password) {
+                alert("Password doesn't match!");
+                event.preventDefault();
+            }
+            else if (password.length < 8) {
+                alert("Your password must be at least 8 characters long!");
+                event.preventDefault();
+            }                       
+        }
+    </script>
+{% endblock %}
