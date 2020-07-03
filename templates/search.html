@@ -4,29 +4,50 @@
 {% endblock %}
 
 {% block main %}
-    
-    <form action="/search", method="POST">
-        <input name="movieName" autofocus autocomplete="off" class="form-control" type="text" placeholder="Search movie">
-        <button class="btn btn-primary" style="background-color: lightseagreen; border-color: lightseagreen;" type="submit">Search</button>
-    </form>
-    <hr>
 
     <div style="color: Crimson;">{{message}}</div>
 
-    {% for row in data %}
+    <div class="row row-cols-1 row-cols-md-3">
+        {% for movie in movies%}
+        <div class="col mb-4">
+            <div class="card h-100">
+                <a onclick="link()" href="https://www.imdb.com/title/{{movie['imdbID']}}/" target="_blank">
+                    <img src="{{movie['Poster']}}" class="card-img-top" alt="...">  
+                </a>                              
+                <div class="card-body">
+                    <h5 class="card-title">{{movie["Title"]}}</h5>
+                    <p class="card-text">
+                        IMDB ID: {{movie["imdbID"]}} <br>
+                        Year: {{movie["Year"]}} <br>
+                        Type: {{movie["Type"]}} <br> 
+                    </p>
+                    <hr>
+                    <form action="/search" method="POST">
+                        <button class="btn btn-outline-info my-2 my-sm-0" type="submit" name="movie_id" value="{{movie['imdbID']}}">Leave Feedback</button>
+                     </form> <br>
+                
+                     <form action="/check" method="POST">
+                        <button class="btn btn-outline-info my-2 my-sm-0" type="submit" name="movie_id" value="{{movie['imdbID']}}">Check Feedbacks</button>
+                     </form> <br>
+                     <form action="/watchList" method="POST">
+                        <button class="btn btn-outline-info my-2 my-sm-0" type="submit" name="movie_id" value="{{movie['imdbID']}}">Add My List</button>
+                     </form>                                          
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <br><hr>
+    <div class="alert alert-info" role="alert">
+        If you are unable to see the movie you are searching here, try to enter the full name of the movie.
+      </div>
 
-    <img src="{{row['Poster']}}" alt="product"> 
-    <form action="/search" method="POST">
-       <button type="submit" name="movie_id" value="{{row['imdbID']}}">Comment</button>
-    </form>
-    <br> 
-    {{row["Title"]}}  <br>
-    IMDB ID: {{row["imdbID"]}} <br>
-    Year: {{row["Year"]}} <br>
-    Type: {{row["Type"]}} <br>  
-        
-    <hr>
-    <br>
-
-    {% endfor %}
+    <script>
+        function link() {
+            r = confirm("This will take you to IMDb's website.");
+            if (r === false) {
+                event.preventDefault();
+            }
+        }
+    </script>
 {% endblock %}

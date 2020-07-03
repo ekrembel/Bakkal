@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Watch List
+{% endblock %}
+
+{% block main %}
+    <div style="color: crimson;">{{message}}</div>    
+    <table>
+        <tr>
+            <th>IMDB ID</th>
+            <th>TITLE</th>
+            <th>IMAGE</th>
+        </tr>
+        {% for movie in movies %}
+        <tr>
+            <td><a onclick="link()" class="text-info" href="https://www.imdb.com/title/{{movie['imdbId']}}/" target="_blank">{{movie['imdbId']}}</a></td>
+            <td>{{movie["title"]}}</td>
+            <td><img width="60px" height="80px" src="{{movie['image']}}" alt=""></td>
+            <td style="padding-right: 20px">
+                <form action="/remove" method="POST">
+                    <button onclick="remove()" name="movie_id" class="btn btn-outline-info my-2 my-sm-0" value="{{movie['imdbId']}}">Remove</button>
+                </form>        
+            </td>
+        </tr>  
+        {% endfor %}      
+    </table>
+    <script>
+        function remove() {
+            r = confirm("Are you sure to delete this?");
+            if (r === false) {
+                event.preventDefault();
+            }
+        }
+
+        function link() {
+            r = confirm("This will take you to IMDb's website");
+            if (r === false) {
+                event.preventDefault();
+            }
+        }
+    </script>
+{% endblock %}

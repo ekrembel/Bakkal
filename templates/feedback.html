@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Comment
+{% endblock %}
+
+{% block main %}
+    <form action="/feedback" method="POST">
+        <div class="form-group">
+          
+          <input name="header" type="text" style="width: 50%;" class="form-control" id="header" placeholder="Subject">
+        </div>
+        <div class="form-group">
+          <textarea name="feedback" style="width: 50%;" class="form-control" id="feedback" rows="5" placeholder="Your feedback"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Would you recommend it?</label>
+          <select name="recommend" class="form-control" id="exampleFormControlSelect1">
+            <option>Yes</option>
+            <option>No</option>
+            <option>Not Sure</option>
+          </select>
+      </div>
+        <button onclick="feed()" name="movie_id" class="btn btn-outline-info my-2 my-sm-0" type="submit" value="{{movie_id}}" >Submit</button>
+    </form>
+
+    <script>
+      function feed() {
+        text = document.getElementById("feedback").value;
+        if (text === "") {
+          alert("Please enter your feedback!");
+          event.preventDefault();
+        }
+      }
+    </script>
+{% endblock %}

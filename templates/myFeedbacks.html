@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    My Feedbacks
+{% endblock %}
+
+{% block main %}
+    <div style="color: crimson;">{{message}}</div>
+    <div class="card-columns">
+        {% for movie in movies %}
+        <div class="col mb-4">
+          <div class="card h-100">
+            <img src="{{movie['image']}}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{movie["Title"]}}</h5>
+              <p class="card-text">{{movie["feedback"]}}</p>
+            </div>
+            <form action="/check" method="POST">
+                <button class="btn btn-outline-info my-2 my-sm-0" type="submit" name="movie_id" value="{{movie['imdbId']}}">All Feedbacks</button>
+             </form> <br>
+             <form action="/edit" method="POST">
+                <button class="btn btn-outline-info my-2 my-sm-0" type="submit" name="edit" value="{{movie['imdbId']}}">Edit</button>
+             </form> <br>
+          </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+{% endblock %}

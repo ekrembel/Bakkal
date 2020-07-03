@@ -16,6 +16,50 @@ main .form-control
     
 }
 
+
+th, td {
+    padding-right: 170px;
+    padding-left: 15px;
+}
+
+tr:nth-child(even) {
+    background-color: whitesmoke;
+}
+
+/* .card {
+    float: left;
+    width: 33%;
+    padding: 15px;
+    width: 30rem;
+} */
+
+/* 
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+} */
+/* .card-body {
+    text-align: justify;
+    
+}
+
+.card {
+    margin-left: 150px;
+    margin-right: 150px;
+}
+
+.bottom {
+    margin-left: 150px;
+    margin-top: 20px;
+}
+
+.card-img-top {
+    width: 50%;
+    margin-left: 190px;
+    margin-top: 25px;
+} */
+
 main
 {
     /* scroll horizontally as needed */
@@ -23,4 +67,10 @@ main
 
     /* center contents */
     text-align: center;
+
+    font-family: 'Times New Roman', Times, serif ;
+}
+
+nav {
+    font-family: 'Times New Roman', Times, serif ;
 }

@@ -6,9 +6,6 @@ from flask import request, redirect, render_template, session
 from functools import wraps
 
 
-
-
-
 def login_required(f):
     """
     Decorate routes to require login.
@@ -22,14 +19,14 @@ def login_required(f):
         return f(*args, **kwargs)
     return decorated_function
 
-def lookup(name):
+def search_by_name(name):
     """Look up quote for symbol."""
 
     # Contact API
     try:
         url = "https://movie-database-imdb-alternative.p.rapidapi.com/"
-
-        querystring = {"page":"1","r":"json","s": name}
+        
+        querystring = {"page":1 ,"r":"json","s": name}
 
         headers = {
             'x-rapidapi-host': "movie-database-imdb-alternative.p.rapidapi.com",
@@ -46,4 +43,32 @@ def lookup(name):
         movies = r["Search"]
         return movies
     except (KeyError, TypeError, ValueError):
-        return None    
+        return None 
+
+def search_by_id(imdb_id):
+    """Look up movie for imdb id."""
+
+    # Contact API
+    try:
+        url = "https://movie-database-imdb-alternative.p.rapidapi.com/"
+
+        querystring =  {"i":imdb_id,"r":"json"}
+
+        headers = {
+            'x-rapidapi-host': "movie-database-imdb-alternative.p.rapidapi.com",
+            'x-rapidapi-key': "1bd81643f7msh84a60c3a642fe03p13d292jsn5e60be7005e8"
+            }
+
+        response = requests.request("GET", url, headers=headers, params=querystring)
+    except requests.RequestException:
+        return None
+
+    # Parse response
+    try:
+        r = response.json()
+        return r
+    except (KeyError, TypeError, ValueError):
+        return None  
+
+def message(message):
+    return render_template("message.html", message=message)                   

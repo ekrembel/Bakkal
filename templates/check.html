@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Feedbacks
+{% endblock %}
+
+{% block main %}
+    
+    <div class="row">
+        <div class="card" style="width: 50rem; margin-left: 150px;">
+            <div style="width: 50%; margin-left: 190px; margin-top: 25px;">
+                <img src="{{data['Poster']}}" class="card-img-top" alt="...">
+            </div>            
+            <div class="card-body" style="text-align: justify;">
+                <h5 style="color: crimson ;" class="card-title">{{data["Title"]}}</h5>
+                <hr>
+                <p class="card-text"><b>Description: </b>{{data["Plot"]}}</p>
+                <ul style="text-align: left;" class="card-text">        
+                     <li>Released: {{data["Released"]}}</li>
+                     <li>Runtime: {{data["Runtime"]}}</li>
+                     <li>Genre: {{data["Genre"]}}</li>
+                     <li>IMDB Rate: {{data["imdbRating"]}}</li>
+                </ul>                                               
+            </div>
+        </div> <br>
+
+        {% for feedback in feedbacks %}
+        <div class="card border-dark mb-3" style="width: 50rem; margin-top: 25px; margin-left: 150px;">
+            <div style="text-align: left;" class="card-header">
+                <span><b>{{feedback["feedback_header"]}}</b></span> <span style="float: right;">Recommeds: <span style="color: crimson;">{{feedback["feedback_type"]}}</span></span>
+            </div>           
+            <div class="card-body text-dark" style="text-align: justify; font-style: italic;">
+                <p class="card-text">{{feedback["feedback"]}}</p>             
+            </div>
+            <div class="card-footer">
+                <small style="float: right;" class="text-muted">By {{feedback["username"]}}</small>
+            </div>
+        </div> 
+        {% endfor %} 
+    </div>  
+    <div style="color: crimson; margin-top: 20px;">{{message}}</div>    
+    <div style="margin-top: 20px;">
+        <form action="/search" method="POST">
+            <button class="btn btn-outline-info my-2 my-sm-0"  type="submit" name="movie_id" value="{{data['imdbID']}}">Leave Feedback</button>
+        </form>   
+    </div>
+    
+{% endblock %}
+
+
+<!-- <div class="bottom">
+    <form action="/search" method="POST">
+        <button class="btn btn-primary" style="background-color: lightseagreen; border-color: lightseagreen;" type="submit" name="movie_id" value="{{data['imdbID']}}">Leave Feedback</button>
+    </form>   
+</div>  -->

@@ -16,7 +16,7 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light border" style="background-color: white;">
-            <a class="navbar-brand" href="#"> <span style="font-size: 45px; color: lightseagreen; font-family: Georgia, 'Times New Roman', Times, serif;">Bakkal</span> </a>
+            <a class="navbar-brand" href="/"> <span style="font-size: 45px; color: lightseagreen; font-family: Georgia, 'Times New Roman', Times, serif;">Bakkal</span> </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -25,36 +25,41 @@
                 {% if session.user_id %}
                 <ul class="navbar-nav mr-auto mt-2">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="myFeedbacks">My Feedbacks <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/search">Search</a>
+                        <a class="nav-link" href="/allFeedbacks">All Feedbacks</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link" href="/watchList">Watch List</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
-                        </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" style="color: gray;" href="#">Action</a>
-                        <a class="dropdown-item" style="color: gray;" href="#">Change Password</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" style="color: gray;" href="#">Delete My Account</a>
-                    </div>                  
-                    </li>               
+            
                 </ul>
                 <ul class="navbar-nav ml-auto mt-2">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/login">
-                            <button class="btn btn-primary" style="border-color: lightcoral ; color: lightcoral; background-color: white;">Log Out</button> 
+                    <li class="nav-item" style="margin-right: 15px;">
+                        <form class="form-inline my-2 my-lg-0" action="/search", method="POST">
+                            <div>
+                                <input name="movieName" autofocus autocomplete="off" class="form-control mr-sm-2" type="search" placeholder="Search movie">
+                            </div>
+                            
+                            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+                        </form>
+                    </li> 
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{session["username"]}}
                         </a>
-                    </li>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" style="color: gray;" href="/updatePassword">Change Password</a>
+                        <a class="dropdown-item" style="color: gray;" href="/deleteAccount">Delete My Account</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" style="color: gray;" href="/login">
+                            <button class="btn btn-outline-danger">Log Out</button> 
+                        </a>
+                    </div>                  
+                    </li>  
                 </ul> 
+
                 {% else %}
                 <ul class="navbar-nav ml-auto mt-2">
                     <li class="nav-item">
@@ -80,6 +85,6 @@
         </main>
         <footer class="small text-center text-muted">
             <div>All rights reserved. &copy; 2020 ekrembel</div>
-        </footer>
+        </footer> <br> <br>
     </body>
 </html>
