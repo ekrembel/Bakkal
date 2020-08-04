@@ -22,6 +22,7 @@ In this project, I have made use of
 - werkzeug.security  to generate hash for passwords
 - cs50 Library for SQL
 - flash
+- Open API
 
 
 ## Features
@@ -44,17 +45,9 @@ Users can
 Certain requirenmets are enforced when user wants to submit a form. 
 
 
-### Routing
-
-Some routes requires login. User needs to be able to authenticated to be able to access them.
-
 ### Data
 
-Data is pulled from Movie Database in RapidApi.
-
-### Database
-
-Relational database is used. Database has got 3 tables - users, movies, and watchlist. User id is used as foreign key. 
+Data is being pulled from Movie Database in RapidApi. 
 
 ### Sessions
 
